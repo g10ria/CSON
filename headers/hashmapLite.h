@@ -10,7 +10,7 @@
 
 struct entry;
 
-void initialize();
+void initializeMap();
 
 void addEntry(struct entry *ent);
 
