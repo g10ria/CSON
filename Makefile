@@ -2,13 +2,13 @@ compile=gcc
 buildDir=bin
 headersDir=headers
 
-_deps = ${headersDir}/hashmapLite.h
+_deps = hashmapLite.h hashfunctions.h
 deps = $(patsubst %,$(headersDir)/%,$(_deps))
 
-obj = hashmapLite.o
+obj = hashmapLite.o hashfunctions.o main.o
 
 %.o: %.c
 	$(compile) -c -o $@ $<
 
-hashmapLite: $(obj)
+main: $(obj)
 	$(compile) -o ${buildDir}/$@.bin $^ -I/$(headersDir)

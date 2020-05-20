@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../hashfunctions.c"
+#include "./hashfunctions.h"
 
 struct entry;
 

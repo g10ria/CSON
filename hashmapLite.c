@@ -7,14 +7,14 @@
  */
 
 #include "./headers/hashmapLite.h"
+#include "./headers/hashfunctions.h"
 
 int size = 256; // size of 1 level of hashmap
 
 int (*hash)(char *key, int size) = &sum;
 
 // pseudo-linked list
-struct entry
-{
+struct entry {
     char *key;          // unhashed key as a string
     char *val;          // type as a raw string
     struct entry *next; // next in the list
@@ -102,17 +102,17 @@ void put(char *key, char *value)
     addEntry(&e);
 }
 
-int main()
-{
-    initialize();
+// int main()
+// {
+//     initialize();
 
-    put("bd", "value");
-    put("bd", "value3");
+//     put("bd", "value");
+//     put("bd", "value3");
 
-    printf("yo: %s\n", get("bd"));
-    printf("yo: %s\n", get("ad"));
+//     printf("yo: %s\n", get("bd"));
+//     printf("yo: %s\n", get("ad"));
 
-    free(map);
+//     free(map);
 
-    return 0;
-}
+//     return 0;
+// }
