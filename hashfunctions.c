@@ -1,11 +1,13 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-
 // a variety of hash functions to choose from!
 
-unsigned long int identity(char *key)
+int sum(char *key, int size)
 {
-   return 0;
+    int i = 0;
+    int sum = 0;
+    while (key[i] != '\0')
+    {
+        sum += key[i];
+        i++;
+    }
+    return sum % size;
 }
-
