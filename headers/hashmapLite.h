@@ -10,7 +10,7 @@
 
 struct entry;
 
-void initializeMap();
+void initializeHashmap();
 
 void addEntry(struct entry *ent);
 

@@ -25,7 +25,7 @@ struct entry *map; // entry array
 /**
  * Allocates space for the map and initializes null values
  */
-void initializeMap()
+void initializeHashmap()
 {
     map = malloc(size * sizeof(struct entry));
     char null = '\0';
