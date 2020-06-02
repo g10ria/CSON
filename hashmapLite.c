@@ -20,21 +20,22 @@ struct entry {
     struct entry *next; // next in the list
 };
 
-struct entry *map; // entry array
-
 /**
  * Allocates space for the map and initializes null values
  */
-void initializeHashmap()
+struct entry* initializeHashmap(char* initialValue)
 {
+    struct entry *map; // entry array
+
     map = malloc(size * sizeof(struct entry));
-    char null = '\0';
 
     for (int i = 0; i < size; i++)
     {
-        map[i].key = &null;
+        map[i].key = initialValue;
         map[i].next = NULL;
     }
+
+    return map;
 }
 
 /**
@@ -44,13 +45,13 @@ void initializeHashmap()
  * 
  * @param ent pointer to the entry to add
  */
-void addEntry(struct entry *ent)
+void addEntry(struct entry *ent, struct entry* map)
 {
     int address = hash(ent->key, size);
     struct entry *current = map + address;
 
     // empty list, add key-value pair directly
-    if (*(current->key) == '\0')
+    if (*(current->key) == 0)
         map[address] = *ent;
     else
     {
@@ -64,22 +65,26 @@ void addEntry(struct entry *ent)
         else
             current->next = ent; // otherwise concat it to the list
     }
+
+    return;
 }
 /**
  * Gets a value from the hashmap given a key
  * 
  * @param key the key
  */
-char *get(char *key)
+char *get(char *key, struct entry* map)
 {
     int address = hash(key, size);
     struct entry *current = map + address;
 
     int strComparison = strcmp(key, current->key);
+
     while (current->next != NULL && strComparison != 0)
     {
         current = current->next;
         strComparison = strcmp(key, current->key);
+
     }
 
     return strComparison == 0 ? current->val : NULL;
@@ -91,7 +96,7 @@ char *get(char *key)
  * @param key the key
  * @param value the value
  */
-void put(char *key, char *value)
+void put(char *key, char *value, struct entry* map)
 {
     struct entry e;
 
@@ -99,20 +104,9 @@ void put(char *key, char *value)
     e.val = value;
     e.next = NULL;
 
-    addEntry(&e);
+    addEntry(&e, map);
+
+    get(e.key, map);
+
+    return;
 }
-
-// int main()
-// {
-//     initialize();
-
-//     put("bd", "value");
-//     put("bd", "value3");
-
-//     printf("yo: %s\n", get("bd"));
-//     printf("yo: %s\n", get("ad"));
-
-//     free(map);
-
-//     return 0;
-// }

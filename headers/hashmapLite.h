@@ -10,12 +10,12 @@
 
 struct entry;
 
-void initializeHashmap();
+struct entry* initializeHashmap(char* initialValue);
 
-void addEntry(struct entry *ent);
+void addEntry(struct entry *ent, struct entry *map);
 
-char *get(char *key);
+char *get(char *key, struct entry *map);
 
-void put(char *key, char *value);
+void put(char *key, char *value, struct entry *map);
 
 #endif
